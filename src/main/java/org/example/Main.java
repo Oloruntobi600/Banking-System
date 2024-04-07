@@ -8,11 +8,11 @@ import java.util.List;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        User user1 = new User(1,"Tobi",1234561, +234, "Lekki", 30,
+        User user1 = new User(1,"Tobi Ventures",1234561, +234, "Lekki", 30,
                 "Tolu",User.userList);
-        User user2 = new User(2,"Opeyemi",1234562, +433, "Oshodi", 25,
+        User user2 = new User(2,"Opeyemi Global",1234562, +433, "Oshodi", 25,
                 "Tope",User.userList);
-        User user3 = new User(3,"Victoria",1234563, +821, "Ajah", 40,
+        User user3 = new User(3,"Victoria Limited",1234563, +821, "Ajah", 40,
                 "Tosin",User.userList);
         User user4 = new User(4,"Jumoke",1234564, +778, "Ikeja", 50,
                 "Tiara",User.userList);
@@ -30,7 +30,6 @@ public class Main {
         System.out.println(user4);
 
 
-
         Bank bank1 = new Bank("Wema Bank","Ibadan",new ArrayList<>());
         Bank bank2 = new Bank("Wema Bank","Lagos",new ArrayList<>());
         Bank bank3 = new Bank("Wema Bank","Abeokuta",new ArrayList<>());
@@ -40,7 +39,6 @@ public class Main {
         bank2.addBank(bank2);
         bank3.addBank(bank3);
         bank4.addBank(bank4);
-
         System.out.println("2.HOW TO ADD BANKS");
         System.out.println(Bank.bankList);
         System.out.println(bank1);
@@ -49,84 +47,92 @@ public class Main {
         System.out.println(bank4);
 
 
-        Account account1 = new Account("Tobi","savings",1130268431,new ArrayList<>());
-        Account account2 = new Account("Opeyemi","current",1130268432,new ArrayList<>());
-        Account account3 = new Account("Victoria","savings",1130268433, new ArrayList<>());
-        Account account4 = new Account("Jumoke","current",1130268434,new ArrayList<>());
+        Account account1 = new Account("Tobi Ventures","savings",1130268431,new ArrayList<>());
+        Account account2 = new Account("Opeyemi Global","current",1130268432,new ArrayList<>());
+        Account account3 = new Account("Victoria Limited","savings",1130268433, new ArrayList<>());
+        Account account4 = new Account("Jumoke International","current",1130268434,new ArrayList<>());
+
 
         account1.addAccount(account1);
         account2.addAccount(account2);
         account3.addAccount(account3);
         account4.addAccount(account4);
 
-        System.out.println("3. METHOD TO ADD ACCOUNTS TYPE");
+
+        System.out.println("3. METHOD FOR ACCOUNT MANAGEMENT TO UPDATE PHONE NUMBER");
+        account1.newPhoneNumber("Tobi Ventures",1130268431,+222);
+        account1.newPhoneNumber("Opeyemi Global",1130268432,+555);
+        account1.newPhoneNumber("Victoria Limited",1130268433,+888);
+
+
+        System.out.println("4. METHOD FOR ACCOUNT MANAGEMENT TO UPDATE ACCOUNT NAME");
+//        account1.newAccountName("Tobi Ventures",1130268431,"Tobi Ventures Limited");
+//        account2.newAccountName("Opeyemi Global",1130268432, "Opeyemi Global Limited ");
+//        account3.newAccountName("Victoria Limited",1130268433,"Victoria Limited International");
+
+
+        System.out.println("5. METHOD TO ADD ACCOUNTS TYPE");
         System.out.println(Account.accountList);
         System.out.println(account1);
         System.out.println(account2);
         System.out.println(account3);
         System.out.println(account4);
 
-        System.out.println("4. METHOD TO DEPOSIT CASH AND ACCOUNT BALANCE");
-        account1.cashDeposit("Tobi",50000,1130268431);
-        account1.cashDeposit("Tobi",10000,1130268431);
 
-        System.out.println("5. METHOD TO WITHDRAW CASH AND SHOWING ACCOUNT BALANCE");
-        account1.cashWithdrawal("Tobi",10000, 1130268431);
-        account1.cashWithdrawal("Tobi",20000, 1130268431);
+        System.out.println("6. METHOD TO BLOCK USER");
+//        account1.blockUser("Tobi Ventures",1130268431);
+//        account2.blockUser("Opeyemi Global",1130268432);
+//        account3.blockUser("Victoria Limited",1130268433);
 
 
+        System.out.println("7. METHOD TO UNBLOCK USER");
+//        account1.unBlockUser("Tobi Ventures",1130268431);
+//        account1.unblockUser("Opeyemi Global",1130268432);
+//        account1.unblockUser("Victoria Limited",1130268433);
+
+        System.out.println(".8. METHOD TO DEPOSIT CASH AND ACCOUNT BALANCE");
+        account1.cashDeposit("Tobi Ventures",50000,1130268431,1);
+        account1.cashDeposit("Tobi Ventures",10000,1130268431,1);
+        account1.cashDeposit("Tobi Ventures",10000,1130268431,1);
+        System.out.println("Tobi's balance: "+ account1.getAccountBalance());
+        account2.cashDeposit("Opeyemi Global",40000,1130268432, 2);
+        account2.cashDeposit("Opeyemi Global",10000,1130268432,2);
+        account2.cashDeposit("Opeyemi Global",10000,1130268432,2);
+        System.out.println("Opeyemi's balance: "+ account2.getAccountBalance());
 
 
+        account3.cashDeposit("Victoria Limited",30000,1130268433, 3);
+        account3.cashDeposit("Victoria Limited",10000,1130268433,3);
+        account3.cashDeposit("Victoria Limited",10000,1130268433,3);
+        account3.cashDeposit("Victoria Limited",100000,1130268433,3);
+        System.out.println("Victoria's balance: "+ account3.getAccountBalance());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        System.out.println("9. METHOD TO WITHDRAW CASH AND SHOWING ACCOUNT BALANCE");
+        account1.cashWithdrawal("Tobi Ventures",10000, 1130268431,1);
+        account1.cashWithdrawal("Opeyemi Global",10000, 1130268432,2);
+        account3.cashWithdrawal("Victoria Limited",10000, 1130268433,3);
+        account3.cashWithdrawal("Victoria Limited",20000, 1130268433,4);
 
 
 
 
+        Transaction transaction1 = new Transaction(1,"deposit",50000,new Date());
+        Transaction transaction2 = new Transaction(2,"deposit",40000,new Date());
+        Transaction transaction3 = new Transaction(3,"deposit",30000,new Date());
+
+        System.out.println(" 10. METHOD FOR TRANSACTION HISTORY");
+//        account1.addTransaction(transaction1);
+//        account2.addTransaction(transaction2);
+//        account3.addTransaction(transaction3);
+
+        Transaction.showTransactionHistory();
 
 
 
-//        System.out.println("4. HOW TO CREATE AN ACCOUNT IN BANK");
-//        user1.accountCreation("Tobi", 30,123,"Eco Bank", "Ibadan","savings");
-//        user2.accountCreation("Opeyemi", 25,245,"Wema Bank", "Lagos","current");
-//        user3.accountCreation("Victoria", 40,456,"Access Bank", "Abeokuta","savings");
-//        user4.accountCreation("Jumoke", 50,789,"Zenith Bank", "Ilorin","current");
 
 
-//        System.out.println("5. METHOD TO DEPOSIT INTO THE ACCOUNT");
-//        Transaction transaction1 = new Transaction(1,"Tobi",123,470,"Lekki"
-//                ,30,"Tolu",new ArrayList<>(),0,0,0,new Date(),0
-//                ,1130268431,1724401480);
-//        Transaction transaction2 = new Transaction(2,"Tobi",123,470,"Lekki"
-//                ,30,"Tolu",new ArrayList<>(),0,0,0,new Date(),0
-//                ,1130268432,1724401481);
-//
-//        transaction1.cashDeposit("Tobi",5000,2021,002,001);
-//        transaction2.cashDeposit("Opeyemi",7000,2022,001,002);
-//
+
+
 
 
 

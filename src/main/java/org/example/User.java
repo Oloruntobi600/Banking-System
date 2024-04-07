@@ -1,7 +1,6 @@
 package org.example;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class User implements Serializable  {
     private String nextOfKin;
     public static List<User>userList = new ArrayList<>();
 
-    public User(int id, String userName, long bvnNumber, long phoneNumber, String userAddress, int age, String nextOfKin, List<User> userList) {
+    public User(int id, String userName, long bvnNumber, long phoneNumber, String userAddress, int age,String nextOfKin, List<User>userList) {
         this.id = id;
         this.userName = userName;
         this.bvnNumber = bvnNumber;
@@ -38,6 +37,32 @@ public class User implements Serializable  {
 //                System.out.println("MR. " +userName + " who is  " + age + "yrs old" + " with BVN number: " +bvnNumber + " has created a " +accountType + " account with "
 //                + bankName + " which is located at: " + bankAddress);
 //        }
+
+
+    public void accountManagement(String accountName, long accountNumber, String newAccountName, long newPhoneNumber, String newAddress) {
+        for (Account account : Account.accountList) {
+            if (account.getAccountName().equals(accountName) && account.getAccountNumber() == accountNumber) {
+                // Update account details
+                account.setAccountName(newAccountName);
+                account.setPhoneNumber(newPhoneNumber);
+                account.setAddress(newAddress);
+
+                // Print confirmation message
+                System.out.println("Account details updated successfully:");
+                System.out.println("New Account Name: " + newAccountName);
+                System.out.println("New Phone Number: " + newPhoneNumber);
+                System.out.println("New Address: " + newAddress);
+
+                return; // Exit the method after updating account details
+            }
+        }
+        // If the loop finishes without finding the account, it means the account doesn't exist
+        System.out.println("Account: " + accountName + " with account number: " + accountNumber + " not found");
+    }
+
+
+
+
 
 
 

@@ -4,72 +4,75 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Transaction extends User {
-    public static int debitAmount;
-    public static int creditAmount;
-    private int fundTransfer;
-    private Date date;
-    private int receiversAccountNumber;
-    private int sendersAccountNumber;
+public class Transaction {
+//    public static int transactionId;
+//    public static int debitAmount;
+//    public static int creditAmount;
+    private  Date date;
+    private  String type;
+    private  int amount;
+    private static long receiversAccountNumber;
+    private long sendersAccountNumber;
+    private int transactionId;
     public static List<Transaction>transactionList = new ArrayList<>();
 
-    public Transaction(int id,String userName, int bvnNumber, int phoneNumber, String userAddress,
-                       int age, String nextOfKin, List<User> userList, int debitAmount, int creditAmount,
-                       int fundTransfer, Date date, int receiversAccountNumber, int sendersAccountNumber) {
-        super(id,userName, bvnNumber, phoneNumber, userAddress, age, nextOfKin, userList);
-        Transaction.debitAmount = 0;
-        Transaction.creditAmount = 0;
-        this.fundTransfer = 0;
+    public  Transaction(){
+
+    }
+
+    public Transaction(int transactionId,String type, int amount, Date date ) {
+//        debitAmount = 0;
+//        creditAmount = 0;
         this.date = date;
-        this.receiversAccountNumber = receiversAccountNumber;
-        this.sendersAccountNumber = sendersAccountNumber;
-        transactionList = new ArrayList<>();
+        this.type = type;
+        this.amount = amount;
+        this.transactionId = transactionId;
+//        this.receiversAccountNumber = receiversAccountNumber;
+//        this.sendersAccountNumber = sendersAccountNumber;
+        transactionList.add(this);
     }
-    public void fundTransfer(String user)
-
-
-    public int getDebitAmount() {
-        return debitAmount;
-    }
-
-    public void setDebitAmount(int debitAmount) {
-        Transaction.debitAmount = debitAmount;
+    public static void showTransactionHistory (){
+        for (int i=0; i<transactionList.size(); i++){
+            System.out.println(transactionList.get(i));
+        }
     }
 
-    public static List<Transaction> getTransactionList() {
-        return transactionList;
+
+
+
+
+//    public int getDebitAmount() {
+//        return debitAmount;
+//    }
+
+//    public void setDebitAmount(int debitAmount) {
+//        Transaction.debitAmount = debitAmount;
+//    }
+//
+//    public int getCreditAmount() {
+//        return creditAmount;
+//    }
+//
+//    public void setCreditAmount(int creditAmount) {
+//        Transaction.creditAmount = creditAmount;
+//    }
+
+
+
+    public String getType() {
+        return type;
     }
 
-    public static void setTransactionList(List<Transaction> transactionList) {
-        Transaction.transactionList = transactionList;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getCreditAmount() {
-        return creditAmount;
+    public  int getAmount() {
+        return amount;
     }
 
-    public int getReceiversAccountNumber() {
-        return receiversAccountNumber;
-    }
-
-    public void setReceiversAccountNumber(int receiversAccountNumber) {
-        this.receiversAccountNumber = receiversAccountNumber;
-    }
-
-    public int getSendersAccountNumber() {
-        return sendersAccountNumber;
-    }
-
-    public void setSendersAccountNumber(int sendersAccountNumber) {
-        this.sendersAccountNumber = sendersAccountNumber;
-    }
-
-    public void setCreditAmount(int creditAmount) {
-        Transaction.creditAmount = creditAmount;
-    }
-
-    public int getFundTransfer() {
-        return fundTransfer;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public Date getDate() {
@@ -80,19 +83,46 @@ public class Transaction extends User {
         this.date = date;
     }
 
-    public void setFundTransfer(int fundTransfer) {
-        this.fundTransfer = fundTransfer;
+    public long getReceiversAccountNumber() {
+        return receiversAccountNumber;
+    }
+
+    public void setReceiversAccountNumber(long receiversAccountNumber) {
+        Transaction.receiversAccountNumber = receiversAccountNumber;
+    }
+
+    public long getSendersAccountNumber() {
+        return sendersAccountNumber;
+    }
+
+    public void setTransactionId(int transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public void setSendersAccountNumber(long sendersAccountNumber) {
+        this.sendersAccountNumber = sendersAccountNumber;
+    }
+
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
     }
 
     @Override
     public String toString() {
         return "Transaction{" +
-                "debitAmount=" + debitAmount +
-                ", creditAmount=" + creditAmount +
-                ", fundTransfer=" + fundTransfer +
-                ", date=" + date +
-                ", receiversAccountNumber=" + receiversAccountNumber +
+                "date=" + date +
+                ", type='" + type + '\'' +
+                ", amount=" + amount +
                 ", sendersAccountNumber=" + sendersAccountNumber +
+                ", transactionId=" + transactionId +
                 '}';
+    }
+
+    public String getTransactionId() {
+        return null;
     }
 }

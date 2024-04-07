@@ -19,24 +19,9 @@ public class Bank {
     public void removeBank(Bank bank) {
         bankList.remove(bank);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public String getBankName() {
         return bankName;
     }
-
 
 
     public void setBankName(String bankName) {
