@@ -87,8 +87,8 @@ public class Main {
 
         System.out.println("7. METHOD TO UNBLOCK USER");
 //        account1.unBlockUser("Tobi Ventures",1130268431);
-//        account1.unblockUser("Opeyemi Global",1130268432);
-//        account1.unblockUser("Victoria Limited",1130268433);
+//        account1.unBlockUser("Opeyemi Global",1130268432);
+//        account1.unBlockUser("Victoria Limited",1130268433);
 
         System.out.println(".8. METHOD TO DEPOSIT CASH AND ACCOUNT BALANCE");
         account1.cashDeposit("Tobi Ventures",50000,1130268431,1);

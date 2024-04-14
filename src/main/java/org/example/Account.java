@@ -59,7 +59,7 @@ public class Account {
                     account.setAccountBalance(account.getAccountBalance() + creditAmount);
                     addTransactionHistory(creditAmount, accountNumber, transactionId, "DEPOSIT");
                     System.out.println("Customer:" + accountName + " deposited:N" + creditAmount + "." + "Account balance after deposit: N" + account.getAccountBalance());
-//
+
                 } else {
                     System.out.println("Invalid credit amount for deposit.");
                 }
@@ -74,7 +74,7 @@ public class Account {
         transaction.setDate(new Date());
         transaction.setAmount(creditAmount);
         transaction.setType(transactionType);
-        transaction.setReceiversAccountNumber(accountNumber);
+        transaction.setSendersAccountNumber(accountNumber);
         transaction.setTransactionId(transactionId);
         addTransaction(transaction);
     }

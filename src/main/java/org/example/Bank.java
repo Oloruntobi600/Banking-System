@@ -13,6 +13,9 @@ public class Bank {
         this.bankAddress = bankAddress;
         Bank.bankList = bankList;
     }
+    public Bank(){
+
+    }
     public void addBank(Bank bank){
         bankList.add(bank);
     }
