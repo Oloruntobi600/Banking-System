@@ -66,7 +66,7 @@ public class Account {
                 return;
             }
         }
-        System.out.println("Account not found.");
+//        System.out.println("Account not found.");
     }
 
     private void addTransactionHistory(int creditAmount, long accountNumber, int transactionId, String transactionType) {
@@ -90,9 +90,10 @@ public class Account {
             setAccountBalance(accountBalance - debitAmount);
             addTransactionHistory(debitAmount, accountNumber, transactionId, "WITHDRAWAL");
             System.out.println("Customer:" + accountName + " withdrew N" + debitAmount + "." + " Account balance is :N" + accountBalance);
-        } else if (debitAmount > accountBalance) {
-            System.out.println("Customer:" + accountName + " has Insufficient Balance");
         }
+//        else if (debitAmount > accountBalance) {
+//            System.out.println("Customer:" + accountName + " has Insufficient Balance");
+//        }
     }
 
     public boolean blockUser(String accountName, long accountNumber) {
