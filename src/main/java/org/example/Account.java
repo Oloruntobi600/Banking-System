@@ -15,6 +15,7 @@ public class Account {
     private boolean blocked;
     private int transactionId;
     public static List<Account> accountList = new ArrayList<>();
+    private long phoneNumber;
 
     public Account(String accountName, String accountType
             , long accountNumber, List<User> userList) {
@@ -28,6 +29,7 @@ public class Account {
         this.creditAmount = 0;
         this.debitAmount = 0;
         this.transactionId = transactionId;
+        this.phoneNumber = phoneNumber;
         Account.accountList = new ArrayList<>();
     }
 
@@ -225,6 +227,10 @@ public class Account {
     }
     public void setPhoneNumber(long newPhoneNumber) {
     }
+    public long getPhoneNumber (){this.phoneNumber = phoneNumber;
+        return 0;
+    }
+
 
     public String getAccountType() {
         return accountType;

@@ -24,6 +24,7 @@ public class User implements Serializable  {
         this.nextOfKin = nextOfKin;
         userList = new ArrayList<>();
     }
+    public User(){}
     public void addUser(User user){
         userList.add(user);
     }
