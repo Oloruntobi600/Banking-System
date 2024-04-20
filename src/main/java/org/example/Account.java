@@ -121,6 +121,10 @@ public class Account {
                 accountList.get(i).setBlocked(isBlocked);
                 System.out.println("Customer:" + accountName + " with account number:" + accountNumber + " has been unblocked");
             }
+            else if (Account.accountList.get(i).getAccountName().equals(accountName) &&
+                    Account.accountList.get(i).getAccountNumber() != accountNumber){
+                System.out.println("Invalid Account");
+            }
         }
         return isBlocked;
     }
@@ -129,16 +133,6 @@ public class Account {
         Transaction.transactionList.add(transaction);
     }
 
-//    public void transactionHistory() {
-//        System.out.println("Transaction History for Account: " + accountName + " (Account Number: " + accountNumber + ")");
-//        for (int i=0; i<accountList.size(); i++) {
-//            System.out.println("Transaction ID: " + transactionId);
-//            System.out.println("Date: " + Transaction.getDate());
-//            System.out.println("Amount: " + getCreditAmount());
-//            System.out.println("Type: " + Transaction.getType());
-//            System.out.println("-------------------------------------");
-//        }
-//    }
 
     public void newAccountName(String accountName, long accountNumber, String newAccountName) {
         for (Account account : Account.accountList) {

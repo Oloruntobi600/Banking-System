@@ -201,7 +201,27 @@ class AccountTest {
         assertEquals(accountNumberToDeposit, account1.getCreditAmount());
     }
     @Test
-    void cashDepositLessThan1() {}
+    void cashDepositLessThan1() {
+        Account account1 = new Account("Tobi Ventures","savings",1130268431,new ArrayList<>());
+        Account account2 = new Account("Opeyemi Global","current",1130268432,new ArrayList<>());
+        Account account3 = new Account("Victoria Limited","savings",1130268433, new ArrayList<>());
+        Account account4 = new Account("Jumoke International","current",1130268434,new ArrayList<>());
+
+        account1.addAccount(account1);
+        account2.addAccount(account2);
+        account3.addAccount(account3);
+        account4.addAccount(account4);
+
+        account1.cashDeposit("Tobi Ventures",-1,1130268431,1);
+        account1.cashDeposit("Tobi Ventures",-2,1130268431,1);
+        account1.cashDeposit("Tobi Ventures",-3,1130268431,1);
+
+        Account account = new Account();
+        long accountNumberToDeposit = account1.getCreditAmount();
+        account1.cashDeposit("Tobi Ventures", -1, 1130268431,1);
+        account1.getAccountBalance();
+        assertEquals(accountNumberToDeposit, account1.getCreditAmount());
+    }
     @Test
     void testCustomerUpdateAccount(){
         Account account1 = new Account("Tobi Ventures","savings",1130268431,new ArrayList<>());
@@ -217,6 +237,21 @@ class AccountTest {
         Account account = new Account();
         account1.newAccountName("Tobi Ventures",1130268431,"Tobi Ventures Limited");
         assertEquals("Tobi Ventures Limited",account1.getAccountName() );
+    }
+    @Test
+    void testStaticAccountList() {
+        Account account = new Account();
+        account.setAccountName("Tobi Ventures");
+        account.setAccountNumber(1130268431);
+
+        List<Account> accountList = new ArrayList<>();
+        accountList.add(account);
+        Account.setAccountList(accountList);
+
+        List<Account> retrievedAccountList = Account.getAccountList();
+        assertEquals(1, retrievedAccountList.size());
+        assertEquals("Tobi Ventures", retrievedAccountList.get(0).getAccountName());
+        assertEquals(1130268431, retrievedAccountList.get(0).getAccountNumber());
     }
     @Test
     void testAddTransactionHistory(){
@@ -267,6 +302,18 @@ class AccountTest {
         long transactionHistory = 2;
         Transaction.showTransactionHistory();
         assertNotEquals(2, transaction1.getTransactionId());
+    }
+    @Test
+    void testGettersAndSetters() {
+        Account account = new Account();
+        account.setAccountName("Tobi Ventures");
+        account.setAccountType("Savings");
+        account.setCreditAmount(10000);
+        account.setDebitAmount(5000);
+        account.setAccountNumber(1130268431);
+        account.setAccountBalance(5000);
+        account.setBlocked(false);
+        account.setTransactionId(1);
     }
     @Test
     void testBlockedUserSuccess() {
@@ -335,10 +382,45 @@ class AccountTest {
         account.blockUser("Tobi Ventures",1130268431);
         assertNotEquals(accountNumber, account1.getAccountName());
     }
-//    @Test
-//    void testCustomerInabilityToDeposit() {}
-//    @Test
-//    void testUnblockedUserFailure() {}
+    @Test
+    void testCustomerInabilityToDeposit() {
+        Account account1 = new Account("Tobi Venturez","savings",1130268431,new ArrayList<>());
+        Account account2 = new Account("Opeyemi Global","current",1130268432,new ArrayList<>());
+        Account account3 = new Account("Victoria Limited","savings",1130268433, new ArrayList<>());
+        Account account4 = new Account("Jumoke International","current",1130268434,new ArrayList<>());
+
+        account1.addAccount(account1);
+        account2.addAccount(account2);
+        account3.addAccount(account3);
+        account4.addAccount(account4);
+
+        account1.cashDeposit("Tobi Ventures",50000,1130268431,1);
+        account1.cashDeposit("Tobi Ventures",10000,1130268431,1);
+        account1.cashDeposit("Tobi Ventures",10000,1130268431,1);
+
+        Account account = new Account();
+        long accountNumberToDeposit = account1.getCreditAmount();
+        account1.cashDeposit("Tobi Venturez", 70000, 1130268431,1);
+        account1.getAccountBalance();
+        assertEquals(accountNumberToDeposit, account1.getCreditAmount());
+    }
+    @Test
+    void testUnblockedUserFailure() {
+        Account account1 = new Account("Tobi Ventures","savings",1130268433,new ArrayList<>());
+        Account account2 = new Account("Opeyemi Global","current",1130268432,new ArrayList<>());
+        Account account3 = new Account("Victoria Limited","savings",1130268433, new ArrayList<>());
+        Account account4 = new Account("Jumoke International","current",1130268434,new ArrayList<>());
+
+        account1.addAccount(account1);
+        account2.addAccount(account2);
+        account3.addAccount(account3);
+        account4.addAccount(account4);
+
+        Account account = new Account();
+        String accountName = "Tobi Ventures";
+        account.unBlockUser("Tobi Ventures",1130268431);
+        assertEquals(accountName, account1.getAccountName());
+    }
     @Test
     void testAddTransactionSuccess() {
         Account account1 = new Account("Tobi Ventures","savings",1130268431,new ArrayList<>());
@@ -365,8 +447,32 @@ class AccountTest {
         account.addTransaction(transaction);
         assertEquals(transactionHistory, transaction1.getTransactionList());
     }
-//    @Test
-//    void testAddTransactionFailure() {}
+    @Test
+    void testAddTransactionFailure() {
+        Account account1 = new Account("Tobi Ventures","savings",1130268431,new ArrayList<>());
+        Account account2 = new Account("Opeyemi Global","current",1130268432,new ArrayList<>());
+        Account account3 = new Account("Victoria Limited","savings",1130268433, new ArrayList<>());
+        Account account4 = new Account("Jumoke International","current",1130268434,new ArrayList<>());
+
+        account1.addAccount(account1);
+        account2.addAccount(account2);
+        account3.addAccount(account3);
+        account4.addAccount(account4);
+
+        Transaction transaction1 = new Transaction(1,"deposit",50000,new Date());
+        Transaction transaction2 = new Transaction(2,"deposit",40000,new Date());
+        Transaction transaction3 = new Transaction(3,"deposit",30000,new Date());
+
+        account1.addTransaction(transaction1);
+        account2.addTransaction(transaction2);
+        account3.addTransaction(transaction3);
+
+        Transaction transaction = new Transaction();
+        Account account = new Account();
+        List<Transaction> transactionHistory= Transaction.transactionList;
+        account.addTransaction(transaction);
+        assertEquals(transactionHistory, transaction1.getTransactionList());
+    }
     @Test
     void testUpdateAccountNameSuccess() {
         Account account1 = new Account("Tobi Ventures","savings",1130268431,new ArrayList<>());
